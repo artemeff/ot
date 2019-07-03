@@ -1,18 +1,15 @@
-defmodule Ot do
-  @moduledoc """
-  Documentation for Ot.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Ot.hello()
-      :world
-
-  """
-  def hello do
-    :world
+defmodule OT do
+  defmodule Delete do
+    defstruct [:v]
   end
+
+  defmodule Insert do
+    defstruct [:v]
+  end
+
+  defmodule Retain do
+    defstruct [:v]
+  end
+
+  @type side :: :left | :right
 end

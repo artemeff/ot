@@ -6,27 +6,7 @@ defmodule OT.Text do
   end
 
   def new(ops) do
-    %__MODULE__{ops: tipify(ops)}
-  end
-
-  def tipify(ops) do
-    Enum.map(ops, fn
-      (%{"d" => v}) ->
-        %OT.Delete{v: v}
-
-      (%{d: v}) ->
-        %OT.Delete{v: v}
-
-      (value) when is_binary(value) ->
-        %OT.Insert{v: value}
-
-      (value) when is_integer(value) ->
-        %OT.Retain{v: value}
-
-      (%{__struct__: type} = value) when type in [OT.Delete, OT.Insert, OT.Retain] ->
-        value
-
-    end)
+    %__MODULE__{ops: OT.tipify(ops)}
   end
 
   def apply(%__MODULE__{ops: ops}, document) do
